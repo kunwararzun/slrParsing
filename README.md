@@ -2,6 +2,7 @@
 by Arjun
 --------
 Developed using Python.
-Calculate goto function 
-Constructs SLR table
+Creates the set of LR(0) states for the parse table,
+Construct the parse table,
+Uses the parse table to check the input string.
 
