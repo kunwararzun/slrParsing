@@ -284,7 +284,11 @@ def check_input(stack,input,slr_table,augmented):
 							sptr = sptr + 2
 						elif(values[1][0] == 'R'):
 							print "Stack\t",stack,"\tInput\t",input[iptr:] ,"\tAction Reduce Operation\t",values[1]
-							a = len(stack)-2
+							aug_grm = augmented[int(values[1][1])+1]
+							trunc = ''.join(aug_grm)
+							indx = trunc.index(">")							
+							after_eq_length =len(trunc[indx+1:])
+							a = len(stack)- 2 * after_eq_length
 							stack = stack[0:a]
 							add = augmented[int(values[1][1])+1][0][0]
 							stack = stack + add
@@ -292,7 +296,7 @@ def check_input(stack,input,slr_table,augmented):
 							for values in slr_table[state]:
 								if (values[0] == add):
 									stack = stack + str(values[1])
-									sptr = values[1]
+									sptr = sptr - 2 * after_eq_length+2
 						else:
 							print "Stack	",stack,"\tInput	",input[iptr:] ,"\tAccepted"
 							iptr = iptr + 1
