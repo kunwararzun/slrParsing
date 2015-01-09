@@ -1,3 +1,8 @@
+#SLR parsing in Python 
+#Compiler Construction Mini Project 
+'''
+@Author : Arjun Kunwar 
+'''
 goto_sn = 1
 next_state_sn = 1
 def main():
