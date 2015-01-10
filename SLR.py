@@ -271,19 +271,23 @@ def check_input(stack,input,slr_table,augmented):
 				if(values[0] == ichar):
 					i = i + 1			
 			if(i == 0):
-				print "Unaccepted"
+				formatted_string_stack = '{0: <15}'.format(stack)
+				formatted_string_input = '{0: <10}'.format(input[iptr:])
+				print "Stack\t",formatted_string_stack,"\tInput\t",formatted_string_input ,"\tUnaccepted\t"
 				break
 			elif(i == 1):
 				for values in slr_table[int(stack[sptr])]:
 					if(values[0] == ichar):
+						formatted_string_stack = '{0: <15}'.format(stack)
+						formatted_string_input = '{0: <10}'.format(input[iptr:])
 						if(values[1][0] == 'S'):
-							print "Stack\t",stack,"\tInput\t",input[iptr:] ,"\tAction Shift Operation\t",values[1]
+							print "Stack\t",formatted_string_stack,"\tInput\t",formatted_string_input,"\tAction Shift Operation\t",values[1]
 							stack = stack + input[iptr]
 							iptr = iptr + 1
 							stack = stack + values[1][1]
 							sptr = sptr + 2
 						elif(values[1][0] == 'R'):
-							print "Stack\t",stack,"\tInput\t",input[iptr:] ,"\tAction Reduce Operation\t",values[1]
+							print "Stack\t",formatted_string_stack,"\tInput\t",formatted_string_input ,"\tAction Reduce Operation\t",values[1]
 							aug_grm = augmented[int(values[1][1])+1]
 							trunc = ''.join(aug_grm)
 							indx = trunc.index(">")							
@@ -298,17 +302,18 @@ def check_input(stack,input,slr_table,augmented):
 									stack = stack + str(values[1])
 									sptr = sptr - 2 * after_eq_length+2
 						else:
-							print "Stack	",stack,"\tInput	",input[iptr:] ,"\tAccepted"
+							print "Stack	",formatted_string_stack,"\tInput\t",formatted_string_input ,"\tAccepted"
 							iptr = iptr + 1
 							
 			else:
-				print "Stack\t",stack,"\tInput\t",input[iptr:] ,"\tOperation?\t"
+				formatted_string_stack = '{0: <15}'.format(stack)
+				formatted_string_input = '{0: <10}'.format(input[iptr:])
+				print "Stack\t",formatted_string_stack,"\tInput\t",formatted_string_input ,"\tOperation?\t"
 				for values in slr_table[int(stack[sptr])]:
 					if(values[0] == ichar):
 						print values[1]
 				print "Confict"
 				break
-
 
 
 	
